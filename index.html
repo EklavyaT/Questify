@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Questify — Gamified Productivity</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <!-- Libraries (no keys needed) -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <div class="logo">⚔️</div>
+      <div class="name">Questify</div>
+    </div>
+    <div class="mini-actions">
+      <button id="exportBtn" class="ghost">Export</button>
+      <input id="importFile" type="file" accept=".json" hidden />
+      <button id="importBtn" class="ghost">Import</button>
+      <button id="resetBtn" class="danger">Reset</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="left">
+      <div class="card">
+        <h2>New Quest</h2>
+        <form id="newTaskForm" class="task-form">
+          <input id="taskTitle" class="input" placeholder="e.g., Finish physics worksheet" required />
+          <select id="taskDifficulty" class="input">
+            <option value="1">Difficulty: 1 — Easy</option>
+            <option value="2" selected>Difficulty: 2 — Medium</option>
+            <option value="3">Difficulty: 3 — Hard</option>
+          </select>
+          <input id="taskCategory" class="input" placeholder="Category (Study, Health, Chores…)" />
+          <button class="primary" type="submit">Add Quest</button>
+        </form>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <h2>Active Quests</h2>
+          <div class="filters">
+            <input id="search" class="input sm" placeholder="Search…" />
+            <select id="filterCategory" class="input sm">
+              <option value="all">All Categories</option>
+            </select>
+          </div>
+        </div>
+        <ul id="taskList" class="tasks"></ul>
+        <p id="emptyState" class="empty">No quests yet — add one above 👆</p>
+      </div>
+
+      <div class="card">
+        <details open>
+          <summary class="muted">Completed Today</summary>
+          <ul id="completedList" class="tasks small"></ul>
+        </details>
+      </div>
+    </section>
+
+    <section class="right">
+      <div class="stats">
+        <div class="stat card">
+          <div class="stat-label">Level</div>
+          <div id="level" class="stat-value">1</div>
+        </div>
+        <div class="stat card">
+          <div class="stat-label">XP</div>
+          <div id="xp" class="stat-value">0 / 100</div>
+          <div class="progress"><div id="xpBar" class="bar" style="width:0%"></div></div>
+        </div>
+        <div class="stat card">
+          <div class="stat-label">Streak</div>
+          <div id="streak" class="stat-value">0 🔥</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Last 7 Days</h2>
+        <canvas id="chart" height="220"></canvas>
+      </div>
+
+      <div class="card tips">
+        <h3>How scoring works</h3>
+        <ul>
+          <li>Completing a quest grants XP: Easy 10, Medium 20, Hard 35.</li>
+          <li>Level ups happen at increasing thresholds (auto-calculated).</li>
+          <li>Daily streak grows if you complete ≥1 quest each day.</li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">Built for CS Society Hackathon • No accounts, no data leaves your browser.</footer>
+  <script src="app.js" defer></script>
+</body>
+</html>

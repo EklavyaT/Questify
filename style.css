@@ -1,0 +1,108 @@
+:root{
+  --bg: #0f1226;
+  --panel: rgba(255,255,255,0.07);
+  --panel-strong: rgba(255,255,255,0.12);
+  --text: #eef1ff;
+  --muted: #bac1dd;
+  --primary: #7c9bff;
+  --primary-strong:#5f80ff;
+  --danger:#ff6b6b;
+  --ok:#3ddc97;
+  --accent:#fcd34d;
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, 'Helvetica Neue', Arial;
+  color:var(--text);
+  background: radial-gradient(1200px 800px at 20% -20%, #2430a3 0%, transparent 60%),
+              radial-gradient(1000px 600px at 120% 20%, #4c1d95 0%, transparent 65%),
+              var(--bg);
+}
+
+.topbar{
+  position:sticky; top:0; z-index:10;
+  display:flex; align-items:center; justify-content:space-between;
+  padding:14px 18px; backdrop-filter:saturate(140%) blur(10px);
+  background:linear-gradient(180deg, rgba(15,18,38,.75), rgba(15,18,38,.2));
+  border-bottom:1px solid var(--panel-strong);
+}
+.brand{display:flex; align-items:center; gap:10px}
+.logo{font-size:20px; filter:drop-shadow(0 2px 4px rgba(0,0,0,.4))}
+.name{font-weight:800; letter-spacing:.3px}
+
+.ghost,.danger,.primary{
+  padding:10px 14px; border-radius:12px; border:1px solid var(--panel-strong);
+  background:var(--panel); color:var(--text); cursor:pointer;
+}
+.ghost:hover{background:var(--panel-strong)}
+.danger{border-color:#ff8a8a; color:#ffdede}
+.danger:hover{background:rgba(255,107,107,.2)}
+.primary{background:linear-gradient(180deg,var(--primary) 0%, var(--primary-strong) 100%); border:none}
+.primary:hover{filter:brightness(1.05)}
+
+.container{
+  max-width:1100px; margin:24px auto; padding:0 16px;
+  display:grid; grid-template-columns: 1fr 360px; gap:18px;
+}
+@media (max-width: 920px){ .container{grid-template-columns:1fr} }
+
+.card{
+  background: var(--panel);
+  border: 1px solid var(--panel-strong);
+  border-radius: 16px;
+  padding: 16px;
+  box-shadow: 0 6px 18px rgba(0,0,0,.25);
+}
+.card h2{margin:6px 0 10px 0}
+.card-header{display:flex; align-items:center; justify-content:space-between; gap:12px}
+.filters{display:flex; align-items:center; gap:6px}
+
+.input{
+  background:#0d1024; border:1px solid #2a2f57; color:var(--text);
+  padding:10px 12px; border-radius:12px; width:100%;
+}
+.input.sm{padding:8px 10px}
+.input:focus{outline:none; border-color:#5162ff}
+
+.task-form{display:grid; grid-template-columns: 1fr 180px 1fr 120px; gap:10px}
+@media (max-width:800px){ .task-form{grid-template-columns:1fr 1fr} .task-form .primary{grid-column:1/-1} }
+
+.tasks{list-style:none; margin:0; padding:0}
+.tasks.small .task{padding:10px}
+.task{
+  display:grid; grid-template-columns: 28px 1fr auto auto;
+  align-items:center; gap:10px; padding:12px; border-radius:12px;
+  border:1px dashed #2b2f5a; margin-bottom:8px; background:#0b0f22;
+}
+.task .title{font-weight:600}
+.badge{
+  font-size:12px; border-radius:999px; padding:6px 10px; white-space:nowrap;
+  background:#1a1f43; border:1px solid #2f376f; color:#cbd5ff; margin-left:6px;
+}
+.tag{font-size:12px; padding:6px 10px; border-radius:999px; background:#10222a; border:1px solid #1b3d45; color:#b8ffe0; margin-left:6px}
+.btn-row{display:flex; gap:6px}
+.btn{padding:8px 10px; border-radius:10px; border:1px solid #2a2f57; background:#0d1024; color:#cfe1ff; cursor:pointer}
+.btn:hover{background:#10153a}
+.btn.delete{border-color:#ff9e9e; color:#ffdede}
+.btn.delete:hover{background:rgba(255,107,107,.15)}
+.check{appearance:none; width:20px; height:20px; border-radius:6px; border:1px solid #4150a7; background:#0b0f22; cursor:pointer; position:relative}
+.check:checked{background:linear-gradient(180deg,#47ffa6,#1dd1a1); border-color:#55e0b6}
+.check:checked::after{content:"✓"; position:absolute; top:-2px; left:4px; color:#002312; font-weight:800}
+
+.empty{color:var(--muted); text-align:center; padding:10px 0}
+.muted{color:var(--muted); cursor:pointer}
+
+.stats{display:grid; grid-template-columns: 100px 1fr 120px; gap:12px; margin-bottom:18px}
+.stat{display:flex; flex-direction:column; gap:6px}
+.stat-label{color:var(--muted); font-size:12px}
+.stat-value{font-size:26px; font-weight:800}
+.progress{height:10px; border-radius:999px; background:#10153a; overflow:hidden; border:1px solid #2a2f57}
+.bar{height:100%; background:linear-gradient(90deg, #4ade80, #22d3ee)}
+
+.tips ul{margin:0; padding-left:16px}
+.footer{color:#aeb7e6; text-align:center; padding:24px 12px; opacity:.8}
+
+.mini-actions{display:flex; gap:8px}
